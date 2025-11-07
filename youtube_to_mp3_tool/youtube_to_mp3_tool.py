@@ -1,4 +1,5 @@
 import reflex as rx
+
 from youtube_to_mp3_tool.state import ConverterState
 
 
@@ -6,9 +7,7 @@ def loading_skeleton() -> rx.Component:
     """Displays a skeleton loader while the conversion is in progress."""
     return rx.el.div(
         rx.el.div(class_name="h-4 bg-gray-200 rounded-full w-48 mb-4 animate-pulse"),
-        rx.el.div(
-            class_name="h-4 bg-gray-200 rounded-full max-w-[360px] mb-2.5 animate-pulse"
-        ),
+        rx.el.div(class_name="h-4 bg-gray-200 rounded-full max-w-[360px] mb-2.5 animate-pulse"),
         rx.el.div(class_name="h-4 bg-gray-200 rounded-full mb-2.5 animate-pulse"),
         rx.el.div(class_name="h-10 bg-gray-200 rounded-lg w-full mt-6 animate-pulse"),
         class_name="w-full max-w-md mx-auto p-8 border border-gray-200 rounded-2xl shadow-lg bg-white",
@@ -27,19 +26,13 @@ def result_card() -> rx.Component:
                 ),
                 rx.el.div(
                     rx.image(
-                        src=ConverterState.converted_file_info.get(
-                            "thumbnail", "/placeholder.svg"
-                        ),
-                        alt=ConverterState.converted_file_info.get(
-                            "title", "Video Thumbnail"
-                        ),
+                        src=ConverterState.converted_file_info.get("thumbnail", "/placeholder.svg"),
+                        alt=ConverterState.converted_file_info.get("title", "Video Thumbnail"),
                         class_name="w-24 h-24 object-cover rounded-lg shadow-md",
                     ),
                     rx.el.div(
                         rx.el.h3(
-                            ConverterState.converted_file_info.get(
-                                "title", "Unknown Title"
-                            ),
+                            ConverterState.converted_file_info.get("title", "Unknown Title"),
                             class_name="text-lg font-semibold text-gray-800 line-clamp-2",
                         ),
                         rx.el.p(
@@ -54,12 +47,8 @@ def result_card() -> rx.Component:
                     rx.icon(tag="download", class_name="mr-2 h-5 w-5"),
                     "Download MP3",
                     on_click=rx.download(
-                        url=rx.get_upload_url(
-                            ConverterState.converted_file_info.get("filename", "")
-                        ),
-                        filename=ConverterState.converted_file_info.get(
-                            "filename", "audio.mp3"
-                        ),
+                        url=rx.get_upload_url(ConverterState.converted_file_info.get("filename", "")),
+                        filename=ConverterState.converted_file_info.get("filename", "audio.mp3"),
                     ),
                     class_name="w-full mt-6 flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-[1.02]",
                 ),
