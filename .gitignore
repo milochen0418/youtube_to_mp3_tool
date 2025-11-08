@@ -161,3 +161,6 @@ poetry.lock
 *.mov
 *.mkv
 *.webm
+
+# Tauri build files
+frozen_requirements.txt
