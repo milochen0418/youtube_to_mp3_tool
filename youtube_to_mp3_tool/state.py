@@ -60,6 +60,13 @@ class ConverterState(rx.State):
                 "http_headers": {
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
                 },
+                # Prefer clients that still return direct media URLs instead of YouTube's web SABR path.
+                "extractor_args": {
+                    "youtube": {
+                        "player_client": ["tv", "android", "ios"],
+                    }
+                },
+                "no_color": True,
                 "geo_bypass": True,
                 # Additional options to handle YouTube anti-bot measures
                 "extractor_retries": 3,
@@ -91,8 +98,10 @@ class ConverterState(rx.State):
                 output_path = upload_dir / output_filename
                 
                 # Create a new ydl instance for download with specific output path
-                download_opts = ydl_opts.copy()
-                download_opts["outtmpl"]["default"] = str(output_path.with_suffix('.%(ext)s'))
+                download_opts = {
+                    **ydl_opts,
+                    "outtmpl": {"default": str(output_path.with_suffix('.%(ext)s'))},
+                }
                 
                 with yt_dlp.YoutubeDL(download_opts) as download_ydl:
                     try:
@@ -123,6 +132,10 @@ class ConverterState(rx.State):
                 if "sign in to confirm you're not a bot" in error_str or "authentication" in error_str:
                     self.error_message = (
                         "This video is protected and requires authentication. Please try a different video."
+                    )
+                elif "http error 403" in error_str or "unable to download video data" in error_str:
+                    self.error_message = (
+                        "YouTube blocked the selected download stream. Please try again later or choose a different video."
                     )
                 elif "signature extraction failed" in error_str or "empty" in error_str:
                     self.error_message = (
