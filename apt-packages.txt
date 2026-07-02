@@ -1,0 +1,7 @@
+# System packages required by this app (installed by the Agentic App Store
+# smart-launcher at deploy time). One package per line; # comments allowed.
+
+# yt-dlp needs ffmpeg to merge separate video/audio streams and to
+# extract/convert audio (e.g. to MP3). Without it, downloads that require
+# post-processing fail at runtime.
+ffmpeg
