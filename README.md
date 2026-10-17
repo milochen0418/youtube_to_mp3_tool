@@ -4,7 +4,7 @@ A Reflex web application for converting YouTube videos to MP3 format.
 
 ## Prerequisites
 
-- Python 3.10 or higher
+- Python 3.11 or higher
 - [Poetry](https://python-poetry.org/docs/#installation) for dependency management
 - FFmpeg (required by yt-dlp for audio conversion)
 

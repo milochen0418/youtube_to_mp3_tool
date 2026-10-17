@@ -65,7 +65,7 @@ def index() -> rx.Component:
     return rx.el.main(
         rx.el.div(
             rx.el.div(
-                rx.icon(tag="youtube", class_name="h-12 w-12 text-blue-500"),
+                rx.icon(tag="square-play", class_name="h-12 w-12 text-blue-500"),
                 rx.el.h1(
                     "YouTube to MP3 Converter",
                     class_name="text-3xl sm:text-4xl font-bold text-gray-800 mt-4 text-center",
@@ -126,7 +126,6 @@ def index() -> rx.Component:
 
 
 app = rx.App(
-    theme=rx.theme(appearance="light"),
     head_components=[
         rx.el.link(rel="preconnect", href="https://fonts.googleapis.com"),
         rx.el.link(rel="preconnect", href="https://fonts.gstatic.com", cross_origin=""),

@@ -7,8 +7,10 @@ readme = "README.md"
 packages = [{include = "youtube_to_mp3_tool"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-reflex = "^0.8.17"
+# 3.11 floor: Reflex 0.10 and the re_ddns smart-launcher image (python:3.11).
+# <3.16 cap: verified up to 3.15.
+python = ">=3.11,<3.16"
+reflex = "0.10.0"
 yt-dlp = "^2025.10.22"
 
 [tool.poetry.group.dev.dependencies]
