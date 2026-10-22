@@ -1,0 +1,33 @@
+/* The page in a caller's picture-in-picture window (<html data-intent-view="pip">, set by
+   reflex_ddns_auth's intent bridge): only the large-print progress panel, which stays readable
+   when the 800 px wide dialog is scaled down to a 320 px window. */
+html, body {
+  background: #0a0a0a;
+}
+
+.yt-pip {
+  display: none;
+}
+
+html[data-intent-view="pip"] .yt-pip {
+  display: block;
+}
+
+html[data-intent-view="pip"] .yt-main {
+  display: none;
+}
+
+/* The idle tick's hidden button and the like. */
+.yt-hidden {
+  display: none;
+}
+
+/* A thin indeterminate shimmer on bars that wait. */
+@keyframes yt-wait {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+.yt-wait {
+  animation: yt-wait 1.4s ease-in-out infinite;
+}

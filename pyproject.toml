@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "youtube-to-mp3-tool"
 version = "0.1.0"
-description = "A Reflex web application for converting YouTube videos to MP3 format"
+description = "Find music on YouTube, preview it and convert it to MP3 into the shared audio collection"
 authors = ["Your Name <your.email@example.com>"]
 readme = "README.md"
 packages = [{include = "youtube_to_mp3_tool"}]
@@ -11,7 +11,12 @@ packages = [{include = "youtube_to_mp3_tool"}]
 # <3.16 cap: verified up to 3.15.
 python = ">=3.11,<3.16"
 reflex = "0.10.0"
-yt-dlp = "^2025.10.22"
+# "default" brings yt-dlp-ejs, which solves YouTube's JavaScript challenges with
+# whichever runtime the machine has (deno, node or bun). Not capped: YouTube
+# changes often and only a current yt-dlp keeps up.
+yt-dlp = {version = ">=2025.10.22", extras = ["default"]}
+# Shared storage (the "audio" collection) and DDNS Intent (the audio.find dialog).
+reflex-ddns-auth = {path = "../reflex_ddns_auth", develop = true}
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.0.0"
